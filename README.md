@@ -49,6 +49,5 @@ Ensure you have the following Python libraries installed:
 pip install pandas numpy
 ```
 
-## License
-This project is licensed under the MIT License.
+
 
