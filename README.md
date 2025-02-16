@@ -1,36 +1,78 @@
+Cleaned SLU Opportunity Wise Data
 
-Data Cleaning
-Data cleaning is the process of identifying and correcting errors, inconsistencies, and inaccuracies in datasets to ensure that the data is accurate, reliable, and suitable for analysis. 
+Overview
 
-It involves handling missing values, correcting formatting issues, addressing outliers, and standardizing data to improve its quality. The primary goals of data cleaning are to enhance the accuracy and reliability of the dataset, leading to more robust and meaningful analyses.
+This repository contains a cleaned and preprocessed dataset based on the SLU Opportunity Wise data. The dataset has undergone various data cleaning steps, including handling missing values, standardizing categorical data, and feature engineering.
 
-Key Aspects of Data Cleaning
-Handling Missing Values: Identifying and dealing with missing data, either by imputing values based on statistical methods or removing observations with missing data. A useful resource for understanding missing data handling is this
-Be careful when handling missing values in this data set, as they may have been intentionally omitted (not added by the user)
+Data Cleaning Steps
 
-Handling Outliers: Identifying and addressing data points that deviate significantly from the majority, which could distort analysis results.
+Loading the Dataset: The raw dataset is loaded using pandas.read_csv().
 
-Standardizing Formats: Ensuring consistency in data formats, such as dates, units of measurement, and categorical variables.
+Initial Inspection:
 
-Correcting Errors: Identifying and correcting any errors in the dataset, including typographical errors, inaccuracies, or inconsistencies. This is a common occurrence in the given data set. For example, some learners when indicating their city might type st. louis, while others might input Saint Louis- while both values intended to indicate the same information they will show up differently in our data analysis. Another example is that some users type random majors such as xxxhhyy). Be mindful to check and make corrections in this data.
+Display dataset information (df.info()).
 
-Dealing with Duplicates: Identifying and removing duplicate records to avoid redundancy and ensure data integrity.
+Show the first 10 rows (df.head(10)).
 
-Handling Inconsistent Categorical Data: Standardizing categories and resolving discrepancies in categorical variables. All values in a particular column should follow the same format
+Provide summary statistics (df.describe()).
 
-Data Validation
-Data validation is the process of ensuring that the data adheres to predefined standards and rules, confirming its accuracy, consistency, and reliability. It involves checking the integrity of the data against expected criteria or business rules. Validation aims to identify and correct any deviations or errors that might compromise the quality of the data.
+Identify duplicate rows (df.duplicated().sum()).
 
-Key Aspects in Data Validation
+Count missing values (df.isnull().sum()).
 
+Date Formatting:
 
-Tip- Check this guide to know more about validating formats.
+Convert date-related columns to datetime format to ensure consistency.
 
-Both data cleaning and validation are essential steps in the data preparation process, ensuring that the data used for analysis is of high quality, reliable, and aligned with the intended objectives of the analysis or business processes.
+Handling Missing Values:
 
-Performing Data Cleaning and Validation
-Performing data cleaning and validation involves a systematic approach to ensure that the dataset is accurate, consistent, and ready for analysis. Here is a step-by-step guide:
+Fill missing Institution Name values with "Unknown".
 
+Fill missing Opportunity Start Date values with the mode of the column.
 
+Remove rows where Apply Date is missing.
 
-By following these steps, you can systematically perform data cleaning and validation, ensuring the dataset's quality and reliability for subsequent analysis.
+Standardizing Categorical Data:
+
+Convert categorical text to title case and strip whitespace.
+
+Normalize variations of "Saint Louis".
+
+Removing Unnecessary Columns:
+
+Drop the Time to Apply column if it exists.
+
+Removing Duplicates:
+
+Remove duplicate rows to ensure data integrity.
+
+Feature Engineering:
+
+Create a new Age column by calculating the difference between today’s date and Date of Birth.
+
+Create an Opportunity Duration column based on the difference between Opportunity End Date and Opportunity Start Date.
+
+Output
+
+The cleaned dataset is saved as Cleaned_SLU_Opportunity_Data.csv.
+
+How to Use
+
+Clone this repository:
+
+git clone https://github.com/your-repo/slu-opportunity-data.git
+cd slu-opportunity-data
+
+Run the data preprocessing script (if applicable):
+
+python clean_data.py
+
+Use the Cleaned_SLU_Opportunity_Data.csv file for analysis or further processing.
+
+Dependencies
+
+Ensure you have the following Python libraries installed:
+
+pip install pandas numpy
+
+License
